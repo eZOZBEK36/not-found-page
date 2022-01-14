@@ -1,0 +1,166 @@
+@use 'sass:math';
+
+@import 'fonts';
+
+@function rem($px: 16) {
+	@return math.div($px, 16) + rem;
+}
+
+@function em($px1: 16, $px2: 16) {
+	@return math.div($px1, $px2) + em;
+}
+
+@function prc($px1, $px2) {
+	@return math.div($px1, $px2) * 100;
+}
+
+@function percent($px1, $px2) {
+	@return math.div($px1, $px2) * 100%;
+}
+
+$color: #333333;
+$grayColor: #4f4f4f;
+
+* {
+	margin: 0;
+}
+
+body {
+	background-color: #fff;
+	font-family: 'Space Mono';
+}
+
+/*COMSMOAKSFNOSANFAUSNFHIAUSHFIUSFHIAUSHF*/
+
+.not-found {
+	padding-top: rem(40);
+	padding-bottom: rem(25);
+	@media (max-width: em(1439.98)) {
+		padding-top: calc(
+			rem(20) + (40 - 20) * ((100vw - rem(375)) / (1440 - 375))
+		);
+	}
+	&__container {
+		margin: 0 auto;
+		padding: 0 rem(20);
+		max-width: rem(1250);
+	}
+	&__title {
+		font-weight: 700;
+		font-size: rem(24);
+		letter-spacing: -0.03em;
+		text-transform: uppercase;
+		line-height: calc(25 / 24);
+		font-family: 'Inconsolata';
+	}
+	&__info {
+		color: #bdbdbd;
+		font-weight: 500;
+		font-size: rem(14);
+		text-align: center;
+		margin-top: rem(300);
+		font-family: 'Montserrat';
+		line-height: percent(17, 14);
+		span {
+			font-weight: 700;
+		}
+		@media (max-width: em(1439.98)) {
+			margin-top: calc(
+				rem(115) + (300 - 115) * ((100vw - rem(375)) / (1440 - 375))
+			);
+		}
+	}
+}
+
+.row-not-found {
+	gap: rem(120);
+	display: flex;
+	padding-top: rem(200);
+	align-items: flex-start;
+	// grid-template-columns: repeat(auto-fit, minmax(540, 1fr));
+	@media (max-width: em(1439.98)) {
+		padding-top: calc(
+			rem(65) + (200 - 65) * ((100vw - rem(375)) / (1440 - 375))
+		);
+		gap: calc(rem(60) + (120 - 60) * ((100vw - rem(375)) / (1440 - 375)));
+	}
+	@media (max-width: em(1023.98)) {
+		flex-wrap: wrap;
+	}
+	&__image {
+		padding-bottom: rem(450);
+		background-size: contain;
+		background-position: center;
+		flex: 0 0 percent(540, 1250);
+		background-repeat: no-repeat;
+		background-image: url('/static/scarecrow.webp');
+		.no-webp & {
+			background-image: url('/static/scarecrow.png');
+		}
+		@media (max-width: em(1023.98)) {
+			margin: 0 auto;
+			min-width: 100%;
+			padding-bottom: percent(238, 286);
+		}
+	}
+	&__column {
+	}
+	&__title {
+		font-size: rem(64);
+		font-family: inherit;
+		letter-spacing: -0.035em;
+		line-height: percent(95, 64);
+		@media (max-width: em(1439.98)) {
+			font-size: calc(
+				rem(48) + (64 - 48) * ((100vw - rem(375)) / (1440 - 375))
+			);
+			line-height: calc(
+				percent(71, 48) + (prc(95, 64) - prc(71, 48)) *
+					((100vw - rem(375)) / (1440 - 375))
+			);
+		}
+		&:not(:last-child) {
+			margin-bottom: calc(
+				rem(30) + (36 - 30) * ((100vw - rem(375)) / (1440 - 375))
+			);
+		}
+	}
+	&__text {
+		color: $grayColor;
+		font-size: rem(24);
+		max-width: rem(380);
+		letter-spacing: -0.035em;
+		line-height: percent(36, 24);
+		@media (max-width: em(1439.98)) {
+			font-size: calc(
+				rem(18) + (24 - 18) * ((100vw - rem(375)) / (1440 - 375))
+			);
+			line-height: calc(
+				percent(27, 18) + (prc(36, 24) - prc(27, 18)) *
+					((100vw - rem(375)) / (1440 - 375))
+			);
+		}
+		&:not(:last-child) {
+			margin-bottom: em(64, 24);
+			// 	margin-bottom: calc(
+			// 		rem(30) + (64 - 30) * ((100vw - rem(375)) / (1440 - 375))
+			// 	);
+		}
+	}
+	&__link {
+		color: #fff;
+		font-size: rem(14);
+		display: inline-block;
+		text-decoration: none;
+		padding: rem(23) rem(42);
+		letter-spacing: -0.035em;
+		background-color: $color;
+		text-transform: uppercase;
+		line-height: percent(22, 14);
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}
